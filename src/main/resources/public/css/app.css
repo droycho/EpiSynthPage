@@ -1,0 +1,10 @@
+body{
+  text-align: center;
+  align-content: center;
+  background-image: url("/img/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  text-shadow: 0 0 20px #020202;
+}
