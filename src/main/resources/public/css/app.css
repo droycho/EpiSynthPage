@@ -8,3 +8,7 @@ body{
   color: white;
   text-shadow: 0 0 20px #020202;
 }
+
+li {
+  list-style-position: inside;
+}
