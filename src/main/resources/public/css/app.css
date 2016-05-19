@@ -1,3 +1,13 @@
+@font-face {
+    font-family: headerFont;
+    src: url(headerFont.ttf);
+}
+
+@font-face {
+    font-family: header2Font;
+    src: url(header2Font.ttf);
+}
+
 body{
   text-align: center;
   align-content: center;
@@ -11,4 +21,16 @@ body{
 
 li {
   list-style-position: inside;
+}
+
+h1 {
+  font-family: headerFont;
+}
+
+h2 {
+  font-family: header2Font;
+}
+
+h3 {
+  font-family: header2Font;
 }
