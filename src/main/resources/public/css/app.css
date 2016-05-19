@@ -8,6 +8,26 @@
     src: url(header2Font.ttf);
 }
 
+@font-face {
+    font-family: header3Font;
+    src: url(header3Font.ttf);
+}
+
+@font-face {
+    font-family: header4Font;
+    src: url(header4Font.ttf);
+}
+
+@font-face {
+    font-family: header5Font;
+    src: url(header5Font.ttf);
+}
+
+@font-face {
+    font-family: header6Font;
+    src: url(header6Font.ttf);
+}
+
 body{
   text-align: center;
   align-content: center;
@@ -17,6 +37,7 @@ body{
   background-size: cover;
   color: white;
   text-shadow: 0 0 20px #020202;
+  font-size: 18px;
 }
 
 li {
@@ -24,13 +45,16 @@ li {
 }
 
 h1 {
-  font-family: headerFont;
+  font-family: header6Font;
+  font-size: 70px;
 }
 
 h2 {
   font-family: header2Font;
+  font-size: 30px;
 }
 
 h3 {
   font-family: header2Font;
+  font-size: 30px;
 }
