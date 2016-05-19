@@ -29,6 +29,21 @@
 }
 
 @font-face {
+    font-family: header7Font;
+    src: url(header7Font.ttf);
+}
+
+@font-face {
+    font-family: header8Font;
+    src: url(header8Font.ttf);
+}
+
+@font-face {
+    font-family: header9Font;
+    src: url(header9Font.ttf);
+}
+
+@font-face {
     font-family: bodyFont;
     src: url(bodyFont.ttf);
 }
@@ -41,12 +56,19 @@ body{
   background-attachment: fixed;
   background-size: cover;
   color: white;
-  text-shadow: 0 0 10px #000000;
+  text-shadow: 0 0 10px #000000,
+               0 0 20px #000000,
+               0 0 30px #000000,
+               0 0 40px #000000;
   font-size: 20px;
   font-family: bodyFont;
 }
 
 ul {
+  font-size: 25px;
+}
+
+ol {
   font-size: 25px;
 }
 
@@ -58,7 +80,14 @@ h1 {
   font-family: header6Font;
   font-size: 70px;
   color: black;
-  text-shadow: 0 0 40px #FFFFFF;
+  text-shadow: 0 0 10px #020202,
+               0 0 20px #FFFFFF,
+               0 0 30px #FFFFFF,
+               0 0 40px #FFFFFF,
+               0 0 70px #FFFFFF,
+               0 0 80px #FFFFFF,
+               0 0 100px #FFFFFF,
+               0 0 150px #FFFFFF;
 }
 
 h2 {
@@ -75,7 +104,6 @@ h3 {
 
 a {
   color: black;
-  text-shadow: 0 0 10px #FFFFFF;
   text-shadow: 0 0 10px #020202,
                0 0 20px #FFFFFF,
                0 0 30px #FFFFFF,
@@ -88,7 +116,9 @@ a {
 
 a:hover {
   color: white;
-  text-shadow: 0 0 20px #000000;
+  text-shadow: 0 0 10px #000000,
+               0 0 20px #000000,
+               0 0 30px #000000;
 }
 
 #subhead {
@@ -100,6 +130,18 @@ a:hover {
   text-shadow: 0 0 10px #020202,
                0 0 20px #FFFFFF,
                0 0 30px #FFFFFF,
+               0 0 40px #FFFFFF,
+               0 0 70px #FFFFFF,
+               0 0 80px #FFFFFF,
+               0 0 100px #FFFFFF,
+               0 0 150px #FFFFFF;
+}
+
+#downLoad:hover {
+  font-size: 45px;
+  text-shadow: 0 0 10px #020202,
+               0 0 20px #020202,
+               0 0 30px #020202,
                0 0 40px #FFFFFF,
                0 0 70px #FFFFFF,
                0 0 80px #FFFFFF,
