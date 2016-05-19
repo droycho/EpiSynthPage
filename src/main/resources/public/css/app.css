@@ -28,6 +28,11 @@
     src: url(header6Font.ttf);
 }
 
+@font-face {
+    font-family: bodyFont;
+    src: url(bodyFont.ttf);
+}
+
 body{
   text-align: center;
   align-content: center;
@@ -36,8 +41,9 @@ body{
   background-attachment: fixed;
   background-size: cover;
   color: white;
-  text-shadow: 0 0 20px #020202;
-  font-size: 18px;
+  text-shadow: 0 0 10px #000000;
+  font-size: 20px;
+  font-family: bodyFont;
 }
 
 li {
@@ -47,6 +53,8 @@ li {
 h1 {
   font-family: header6Font;
   font-size: 70px;
+  color: black;
+  text-shadow: 0 0 40px #FFFFFF;
 }
 
 h2 {
@@ -57,4 +65,11 @@ h2 {
 h3 {
   font-family: header2Font;
   font-size: 30px;
+  color: black;
+  text-shadow: 0 0 10px #000000;
+}
+
+a {
+  color: black;
+  text-shadow: 0 0 10px #FFFFFF;
 }
