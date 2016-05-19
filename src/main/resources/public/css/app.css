@@ -46,6 +46,10 @@ body{
   font-family: bodyFont;
 }
 
+ul {
+  font-size: 25px;
+}
+
 li {
   list-style-position: inside;
 }
@@ -66,10 +70,39 @@ h3 {
   font-family: header2Font;
   font-size: 30px;
   color: black;
-  text-shadow: 0 0 10px #000000;
+  text-shadow: 0 0 10px #FFFFFF;
 }
 
 a {
   color: black;
   text-shadow: 0 0 10px #FFFFFF;
+  text-shadow: 0 0 10px #020202,
+               0 0 20px #FFFFFF,
+               0 0 30px #FFFFFF,
+               0 0 40px #FFFFFF,
+               0 0 70px #FFFFFF,
+               0 0 80px #FFFFFF,
+               0 0 100px #FFFFFF,
+               0 0 150px #FFFFFF;
+}
+
+a:hover {
+  color: white;
+  text-shadow: 0 0 20px #000000;
+}
+
+#subhead {
+  font-family: header2Font;
+}
+
+#downLoad {
+  font-size: 45px;
+  text-shadow: 0 0 10px #020202,
+               0 0 20px #FFFFFF,
+               0 0 30px #FFFFFF,
+               0 0 40px #FFFFFF,
+               0 0 70px #FFFFFF,
+               0 0 80px #FFFFFF,
+               0 0 100px #FFFFFF,
+               0 0 150px #FFFFFF;
 }
