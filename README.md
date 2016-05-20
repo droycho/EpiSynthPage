@@ -50,16 +50,6 @@ _Please report and issues or bugs in the Epicodus forums (http://forum.epicodus.
 
 _Java, Velocity, Spark, JUnit, Bootstrap, CSS, Google Fonts, Gradle, Processing3_
 
-
-
-## Support and contact details
-
-_Please report and issues or bugs in the Epicodus forums (http://forum.epicodus.com/top/all) or send me an email._
-
-## Technologies Used
-
-_Java, Velocity, Spark, JUnit, Bootstrap, CSS, Google Fonts, Gradle_
-
 ### License
 
 * MIT License
