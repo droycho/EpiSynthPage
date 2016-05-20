@@ -41,6 +41,7 @@ _The beads audio library was used to build all of the audio objects. [-The Beads
 ![Set Up](spottySetUp.png)
 ![Pen](pen.png)
 ![Ellipses](spottypsych.png)
+
 ## Support and contact details
 
 _Please report and issues or bugs in the Epicodus forums (http://forum.epicodus.com/top/all) or send us an email._
