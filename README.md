@@ -28,8 +28,9 @@ _The beads audio library was used to build all of the audio objects. [-The Beads
 * Once you have Processing 3 installed, open the program. It should start with a blank new file, or 'sketch'
 * In the tool bar, navigate to Sketch>Import Library>Add Library
 * Find the Beads Library and Install
-* Copy the code from SpottySynth.pde and paste it to the blank 'sketch'.
+* Copy the code from [SpottySynth.pde](https://raw.githubusercontent.com/droycho/EpiSynthPage/master/spottySynth/spottySynth.pde) and paste it to the blank 'sketch'.
 * Press Play on the Processing Text Editor
+
 ## How To Use Spotty Synth
 * Use your computers Keyboard to play notes
 * Key Map:
