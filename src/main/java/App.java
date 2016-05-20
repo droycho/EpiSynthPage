@@ -40,5 +40,11 @@ public class App {
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
 
+    get("/code", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/code.vtl");
+      return new ModelAndView(model,layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

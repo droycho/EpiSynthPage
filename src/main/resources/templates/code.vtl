@@ -1,0 +1,386 @@
+<p id="code">
+import beads.*;<br>
+
+AudioContext setUpPatch;<br>
+AudioContext filterPatch;<br>
+WavePlayer wp;<br>
+WavePlayer modulator;<br>
+WavePlayer filterModulator;<br>
+Gain filterPatchGain;<br>
+Gain g;<br>
+Glide noteFrequency;<br>
+Glide modulatorFrequency;<br>
+Glide filterModulatorFrequency;<br>
+Envelope gainEnvelope;<br>
+Envelope filterGainEnvelope;<br>
+OnePoleFilter filter1;<br>
+boolean pen;<br>
+boolean patch1;<br>
+boolean setUpPatchToggle;<br>
+boolean filterPatchToggle;<br>
+
+void makeCanvas() {<br>
+    background(#1fa5b1);<br>
+    //KEYBOARD OUTLINE<br>
+    //KEYBOARD is 405px w and 100px h<br>
+    stroke(0);<br>
+    rect(310, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(340, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(370, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(400, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(430, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(460, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(490, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(520, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(550, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(580, 490, 30, 100);<br>
+    stroke(0);<br>
+    rect(332, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(362, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(422, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(452, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(482, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(542, 490, 15, 60);<br>
+    stroke(0);<br>
+    rect(572, 490, 15, 60);<br>
+}
+
+void setup() {<br>
+  size(920,615);<br>
+  //SETS UP FOR THE SYNTHESIZER<br>
+  setUpPatch = new AudioContext();<br>
+  gainEnvelope = new Envelope(setUpPatch, 0.0);<br>
+  noteFrequency = new Glide(setUpPatch, 20, 10);<br>
+  WavePlayer wp = new WavePlayer(setUpPatch, noteFrequency, Buffer.SINE);<br>
+  g = new Gain(setUpPatch, 1, gainEnvelope);<br>
+  g.addInput(wp);<br>
+  setUpPatch.out.addInput(g);<br>
+
+  //FILTER PATCH OSC<br>
+
+  filterGainEnvelope = new Envelope(setUpPatch, 0.0);<br>
+  filterModulatorFrequency = new Glide(setUpPatch, 20, 30);<br>
+  WavePlayer filterOsc1 = new WavePlayer(setUpPatch, noteFrequency, Buffer.SINE);<br>
+  filterModulator = new WavePlayer(setUpPatch, filterModulatorFrequency, Buffer.SAW);<br>
+  Function frequencyModulation = new Function(filterModulator) {<br>
+     public float calculate() {<br>
+     return (x[0] * 100.0) + (mouseY);<br>
+    }
+  };<br>
+  filter1 = new OnePoleFilter(setUpPatch, frequencyModulation);<br>
+  filterPatchGain = new Gain(setUpPatch, 1, filterGainEnvelope);<br>
+  filter1.addInput(filterOsc1);<br>
+  filterPatchGain.addInput(filter1);<br>
+  setUpPatch.out.addInput(filterPatchGain);<br>
+
+
+  setUpPatch.start();<br>
+  //SETS UP THE CANVAS WITH BACKGROUND AND KEYBOARD<br>
+  makeCanvas();<br>
+}<br>
+
+
+
+
+
+//   delayIn = new TapIn(ac, 2000);<br>
+//
+//   filter1.addInput(wp);<br>
+//   g.addInput(filter1);<br>
+//   delayIn.addinput(g);<br>
+//   delayOut = new TapOut(ac, delayIn, 500.0);<br>
+//   delayGain = new Gain(ac, 1, 0.50);<br>
+//   delayGain.addInput(delayOut);<br>
+//   ac.out.addInput(delayGain);<br>
+//   ac.out.addInput(g);<br>
+
+
+void draw() {<br>
+  if(patch1 == true) {<br>
+    float value = random(mouseX,10);<br>
+    translate(width/2,height/2);<br>
+    rotate(mouseX);<br>
+    fill(random(255),random(255),random(255));<br>
+    ellipse(mouseX-100,value,mouseY,value);<br>
+  }
+
+  if (pen == true) {<br>
+    filterModulatorFrequency.setValue((mouseX + 100));<br>
+    float value = random(10,40);<br>
+    fill(random(255),random(255),random(255));<br>
+    ellipse(mouseX,mouseY,value,value);<br>
+  }
+}
+
+void mousePressed() {<br>
+  setUpPatchToggle();<br>
+  filterPatchToggle();<br>
+  if (pen == false) {<br>
+    pen = true;<br>
+  }else {<br>
+    pen = false;<br>
+  }<br>
+}<br>
+
+//TURN ON AND OFF THE PSYCHEDELIC ELIPES TRIGGERED BY THE KEY '1'<br>
+void patch1() {<br>
+  if (patch1 == false){<br>
+    patch1 = true;<br>
+  } else {<br>
+    patch1 = false;<br>
+  }<br>
+}<br>
+
+//TURN ON AND OFF THE SETUP PATCH OSCILLATOR TRIGGERED BY THE MOUSEPRESSED<br>
+void setUpPatchToggle() {<br>
+  if (setUpPatchToggle == false){<br>
+    setUpPatchToggle = true;<br>
+  } else {<br>
+    setUpPatchToggle = false;<br>
+  }<br>
+}<br>
+//TURN ON AND OFF THE FILTER PATCH OSCILLATOR TRIGGERED BY THE MOUSEPRESSED<br>
+void filterPatchToggle(){<br>
+  if(filterPatchToggle == false) {<br>
+    filterPatchToggle = true;<br>
+  } else {<br>
+    filterPatchToggle = false;<br>
+  }<br>
+}<br>
+
+void keyPressed() {<br>
+  System.out.println(pen);<br>
+  if (key=='1') {<br>
+    patch1();<br>
+  }<br>
+
+  if(key == 'q' || key == 'Q') {<br>
+    makeCanvas();<br>
+  }<br>
+
+  fill(255);<br>
+  if(key=='a' || key=='A'){<br>
+    noteFrequency.setValue(262);<br>
+
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(310, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='s' || key=='S'){<br>
+    noteFrequency.setValue(294);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(340, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='d' || key=='D'){<br>
+    noteFrequency.setValue(330);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(370, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='f' || key=='F'){<br>
+    noteFrequency.setValue(349);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(400, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='g' || key=='G'){<br>
+    noteFrequency.setValue(392);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(430, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='h' || key=='H'){<br>
+    noteFrequency.setValue(440);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(460, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='j' || key=='J'){<br>
+    noteFrequency.setValue(494);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+  fill(random(255),random(255),random(255));<br>
+}<br>
+  rect(490, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='k' || key=='K'){<br>
+    noteFrequency.setValue(523);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+  fill(random(255),random(255),random(255));<br>
+}<br>
+  rect(520, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='l' || key=='L'){<br>
+    noteFrequency.setValue(587);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(550, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key==';<br>' || key==':'){
+    noteFrequency.setValue(659);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(580, 490, 30, 100);<br>
+
+  fill(255);<br>
+  if (key=='w' || key=='W'){<br>
+    noteFrequency.setValue(278);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(332, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='e' || key=='E'){<br>
+    noteFrequency.setValue(311);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(362, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='t' || key=='T'){<br>
+    noteFrequency.setValue(370);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(422, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='y' || key=='Y'){<br>
+    noteFrequency.setValue(415);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(452, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='u' || key=='U'){<br>
+    noteFrequency.setValue(466);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(482, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='o' || key=='O'){<b>
+    noteFrequency.setValue(554);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(542, 490, 15, 60);<br>
+
+  fill(255);<br>
+  if (key=='p' || key=='P'){<br>
+    noteFrequency.setValue(622);<br>
+    if (pen == false) {<br>
+      gainEnvelope.addSegment(0.2, 5);<br>
+    } else {<br>
+      filterGainEnvelope.addSegment(0.2, 5);<br>
+    }<br>
+    fill(random(255),random(255),random(255));<br>
+  }<br>
+  rect(572, 490, 15, 60);<br>
+}<br>
+
+void keyReleased() {<br>
+    filterGainEnvelope.addSegment(0.0, 100);<br>
+    gainEnvelope.addSegment(0.0, 100);<br>
+
+}<br>
+</p>

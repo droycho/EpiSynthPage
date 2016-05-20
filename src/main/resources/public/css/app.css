@@ -118,7 +118,7 @@ a:hover {
   color: white;
   text-shadow: 0 0 10px #000000,
                0 0 20px #000000,
-               0 0 30px #000000; 
+               0 0 30px #000000;
 }
 
 #subhead {
@@ -147,4 +147,8 @@ a:hover {
                0 0 80px #FFFFFF,
                0 0 100px #FFFFFF,
                0 0 150px #FFFFFF;
+}
+
+#code {
+  text-align: left;
 }
